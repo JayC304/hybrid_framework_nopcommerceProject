@@ -14,4 +14,9 @@ public class PageGeneratorManager {
 	public static RegisterPageObject getRegisterPage(WebDriver driver) {
 		return new RegisterPageObject(driver);
 	}
+
+	public static MyAccountPageObject getMyAccountPage(WebDriver driver) {
+		// TODO Auto-generated method stub
+		return new MyAccountPageObject(driver);
+	}
 }

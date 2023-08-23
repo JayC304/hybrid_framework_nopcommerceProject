@@ -5,10 +5,10 @@ import org.openqa.selenium.WebDriver;
 import commons.BasePage;
 import pageUIs.HomePageUI;
 
-public class HomePageObject extends BasePage {
+public class MyAccountPageObject extends BasePage {
 	private WebDriver driver;
 
-	public HomePageObject(WebDriver driver) {
+	public MyAccountPageObject(WebDriver driver) {
 		this.driver = driver;
 	}
 
@@ -29,9 +29,9 @@ public class HomePageObject extends BasePage {
 		return isElementDisplayed(driver, HomePageUI.MY_ACCOUNT_LINK);
 	}
 
-	public MyAccountPageObject clickToMyAccountLink() {
+	public boolean isMyAccountPageDisplayed() {
 		// TODO Auto-generated method stub
-		return PageGeneratorManager.getMyAccountPage(driver);
+		return false;
 	}
 
 }
