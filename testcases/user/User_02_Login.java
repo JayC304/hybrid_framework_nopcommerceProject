@@ -85,8 +85,8 @@ public class User_02_Login extends BaseTest {
 		loginPage = homePage.clickToLoginLink();
 		loginPage.inputToEmailTextBox(emailAddress);
 		loginPage.inputToPasswordTextBox(password);
-		myAccountPage = loginPage.clickToLoginButton();
-		Assert.assertEquals(myAccountPage.isMyAccountPageDisplayed(), true);
+		homePage = loginPage.clickToLoginButton();
+		Assert.assertEquals(homePage.isMyAccountLinkDisplayed(), true);
 	}
 
 	@AfterClass

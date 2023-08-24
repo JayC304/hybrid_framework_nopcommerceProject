@@ -51,21 +51,27 @@ public class User_03_MyAccount extends BaseTest {
 		registerPage.clickToRegisterButton();
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
 	}
-//
-//	@Test
-//	public void User_02_LoginSuccess() {
-//		loginPage = homePage.clickToLoginLink();
-//		loginPage.inputToEmailTextBox("aaa");
-//		loginPage.inputToPasswordTextBox(password);
-//		loginPage.clickToLoginButton();
-//		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Wrong email");
-//	}
-//
-//	@Test
-//	public void Login_03_My_Account() {
-//		myAccountPage = homePage.clickToMyAccountLink();
-//		Assert.assertTrue(myAccountPage.isMyAccountPageDisplayed());
-//	}
+
+	@Test
+	public void User_02_LoginSuccess() {
+		loginPage = homePage.clickToLoginLink();
+		loginPage.inputToEmailTextBox(emailAddress);
+		loginPage.inputToPasswordTextBox(password);
+		homePage = loginPage.clickToLoginButton();
+		Assert.assertEquals(homePage.isMyAccountLinkDisplayed(), true);
+	}
+
+	@Test
+	public void My_Account_03_Update_Customer_Inforation() {
+		myAccountPage = homePage.clickToMyAccountLink();
+		Assert.assertTrue(myAccountPage.isMyAccountPageDisplayed());
+		myAccountPage.updateGender("Female");
+		myAccountPage.updateFirstName("Auto");
+		myAccountPage.updateLastName("mation");
+		myAccountPage.updateDateOfBirth("1/1/2000");
+		myAccountPage.updateEmail("anhtran789@gmail.com");
+		// myAccountPage.clickTosaveCustomerInfo();//button[@id='save-info-button']
+	}
 
 //
 //	@Test
