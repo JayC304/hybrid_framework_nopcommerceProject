@@ -30,8 +30,8 @@ public class MyAccountPageObject extends BasePage {
 	}
 
 	public boolean isMyAccountPageDisplayed() {
-		// TODO Auto-generated method stub
-		return false;
+		waitForElementClickable(driver, HomePageUI.LOG_OUT_LINK);
+		return isElementDisplayed(driver, HomePageUI.LOG_OUT_LINK);
 	}
 
 }

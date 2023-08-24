@@ -15,4 +15,9 @@ public class RegisterPageUI {
 	public static final String REGISTER_SUCCESS_MESSAGE = "//div[@class='result']";
 	public static final String LOGOUT_LINK = "//a[@class='ico-logout']";
 	public static final String EXISTING_EMAIL_ERROR_MESSAGE = "//div[contains(@class,'message-error')]//li";
+	public static final String MALE_GENDER = "//input[@id='gender-male']";
+	public static final String FEMALE_GENDER = "//input[@id='gender-female']";
+	public static final String DATE_OF_BIRTHDAY = "//select[@name='DateOfBirthDay']";
+	public static final String DATE_OF_BIRTHMONTH = "//select[@name='DateOfBirthMonth']";
+	public static final String DATE_OF_BIRTHYEAR = "//select[@name='DateOfBirthYear']";
 }

@@ -83,4 +83,65 @@ public class RegisterPageObject extends BasePage {
 		return getElementText(driver, RegisterPageUI.EXISTING_EMAIL_ERROR_MESSAGE);
 	}
 
+	public void selectGender(String gender) {
+		if (gender.equals("Male")) {
+			checkToDefaultCheckboxRadio(driver, RegisterPageUI.MALE_GENDER);
+		} else if (gender.equals("FeMale")) {
+			checkToDefaultCheckboxRadio(driver, RegisterPageUI.FEMALE_GENDER);
+		} else {
+			throw new RuntimeException("Gender invalid.");
+		}
+	}
+
+	public void selectDateOfBirth(String birthDay) {
+		String Date[] = birthDay.split("/");
+		selectItemInDefaultDrodown(driver, RegisterPageUI.DATE_OF_BIRTHDAY, Date[0]);
+		selectItemInDefaultDrodown(driver, RegisterPageUI.DATE_OF_BIRTHMONTH, convertMonth(Date[1]));
+		selectItemInDefaultDrodown(driver, RegisterPageUI.DATE_OF_BIRTHYEAR, Date[2]);
+
+	}
+
+	public String convertMonth(String month) {
+		switch (month) {
+		case "1":
+			month = "January";
+			break;
+		case "2":
+			month = "February";
+			break;
+		case "3":
+			month = "March";
+			break;
+		case "4":
+			month = "April";
+			break;
+		case "5":
+			month = "May";
+			break;
+		case "6":
+			month = "June";
+			break;
+		case "7":
+			month = "July";
+			break;
+		case "8":
+			month = "August";
+			break;
+		case "9":
+			month = "September";
+			break;
+		case "10":
+			month = "October";
+			break;
+		case "11":
+			month = "November";
+			break;
+		case "12":
+			month = "December";
+			break;
+		default:
+			throw new RuntimeException("Month invalid.");
+		}
+		return month;
+	}
 }

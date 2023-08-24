@@ -60,6 +60,7 @@ public class User_01_Register extends BaseTest {
 		registerPage.inputToFirstnameTextbox(firstName);
 		registerPage.inputToLastnameTextbox(lastName);
 		registerPage.inputToEmailTextbox(emailAddress);
+		System.out.println(emailAddress);
 		registerPage.inputToPasswordTextbox(password);
 		registerPage.inputToConfirmPasswordTextbox(password);
 		registerPage.clickToRegisterButton();

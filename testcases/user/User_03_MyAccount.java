@@ -16,7 +16,7 @@ import pageObjects.RegisterPageObject;
 
 public class User_03_MyAccount extends BaseTest {
 	private WebDriver driver;
-	private String emailAddress, firstName, lastName, password;
+	private String emailAddress, firstName, lastName, password, gender, birthDay;
 	HomePageObject homePage;
 	RegisterPageObject registerPage;
 	LoginPageObject loginPage;
@@ -28,33 +28,44 @@ public class User_03_MyAccount extends BaseTest {
 		driver = getBrowserDriver(browserName);
 		homePage = PageGeneratorManager.getHomePage(driver);
 
+		gender = "Male";
+		birthDay = "30/4/1998";
 		firstName = "Anh";
 		lastName = "Tran";
 		password = "123456";
-		emailAddress = "anhtran" + generateFakeNumber() + "@gmail.vn";
+		// emailAddress = "anhtran" + generateFakeNumber() + "@gmail.vn";
+		emailAddress = "anhtran123@gmail.com";
 	}
 
 	@Test
 	public void User_01_Register() {
-		loginPage = homePage.clickToLoginLink();
-		loginPage.clickToLoginButton();
-		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Please enter your email");
+		registerPage = homePage.clickToRegisterLink();
+		registerPage.selectGender(gender);
+		registerPage.inputToFirstnameTextbox(firstName);
+		registerPage.inputToLastnameTextbox(lastName);
+		registerPage.selectDateOfBirth(birthDay);
+		registerPage.inputToEmailTextbox(emailAddress);
+		System.out.println(emailAddress);
+		registerPage.inputToPasswordTextbox(password);
+		registerPage.inputToConfirmPasswordTextbox(password);
+		registerPage.clickToRegisterButton();
+		Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
 	}
-
-	@Test
-	public void Login_02_Login() {
-		loginPage = homePage.clickToLoginLink();
-		loginPage.inputToEmailTextBox("aaa");
-		loginPage.inputToPasswordTextBox(password);
-		loginPage.clickToLoginButton();
-		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Wrong email");
-	}
-
-	@Test
-	public void Login_03_My_Account() {
-		myAccountPage = homePage.clickToMyAccountLink();
-		Assert.assertTrue(myAccountPage.isMyAccountPageDisplayed());
-	}
+//
+//	@Test
+//	public void User_02_LoginSuccess() {
+//		loginPage = homePage.clickToLoginLink();
+//		loginPage.inputToEmailTextBox("aaa");
+//		loginPage.inputToPasswordTextBox(password);
+//		loginPage.clickToLoginButton();
+//		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Wrong email");
+//	}
+//
+//	@Test
+//	public void Login_03_My_Account() {
+//		myAccountPage = homePage.clickToMyAccountLink();
+//		Assert.assertTrue(myAccountPage.isMyAccountPageDisplayed());
+//	}
 
 //
 //	@Test

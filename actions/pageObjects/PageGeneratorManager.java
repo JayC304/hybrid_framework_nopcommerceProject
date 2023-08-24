@@ -16,7 +16,6 @@ public class PageGeneratorManager {
 	}
 
 	public static MyAccountPageObject getMyAccountPage(WebDriver driver) {
-		// TODO Auto-generated method stub
 		return new MyAccountPageObject(driver);
 	}
 }

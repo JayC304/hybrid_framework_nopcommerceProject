@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import commons.BaseTest;
 import pageObjects.HomePageObject;
 import pageObjects.LoginPageObject;
+import pageObjects.MyAccountPageObject;
 import pageObjects.PageGeneratorManager;
 import pageObjects.RegisterPageObject;
 
@@ -19,6 +20,7 @@ public class User_02_Login extends BaseTest {
 	HomePageObject homePage;
 	RegisterPageObject registerPage;
 	LoginPageObject loginPage;
+	MyAccountPageObject myAccountPage;
 
 	@Parameters("browser")
 	@BeforeClass
@@ -29,7 +31,8 @@ public class User_02_Login extends BaseTest {
 		firstName = "Anh";
 		lastName = "Tran";
 		password = "123456";
-		emailAddress = "anhtran" + generateFakeNumber() + "@gmail.vn";
+		// emailAddress = "anhtran" + generateFakeNumber() + "@gmail.vn";
+		emailAddress = "anhtran123@gmail.com";
 	}
 
 	@Test
@@ -61,17 +64,29 @@ public class User_02_Login extends BaseTest {
 	@Test
 	public void Login_04_Empty_Password() {
 		loginPage = homePage.clickToLoginLink();
-		loginPage.inputToEmailTextBox("anhtran@gmail.com");
-		loginPage.inputToPasswordTextBox(password);
+		loginPage.inputToEmailTextBox(emailAddress);
 		loginPage.clickToLoginButton();
+		Assert.assertEquals(loginPage.getErrorMessageAtPasswordTextbox(),
+				"Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
 	}
 
 	@Test
 	public void Login_05_Incorrect_Password() {
+		loginPage = homePage.clickToLoginLink();
+		loginPage.inputToEmailTextBox(emailAddress);
+		loginPage.inputToPasswordTextBox("123457");
+		loginPage.clickToLoginButton();
+		Assert.assertEquals(loginPage.getErrorMessageAtPasswordTextbox(),
+				"Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
 	}
 
 	@Test
 	public void Login_06_Valid_Email_Password() {
+		loginPage = homePage.clickToLoginLink();
+		loginPage.inputToEmailTextBox(emailAddress);
+		loginPage.inputToPasswordTextBox(password);
+		myAccountPage = loginPage.clickToLoginButton();
+		Assert.assertEquals(myAccountPage.isMyAccountPageDisplayed(), true);
 	}
 
 	@AfterClass
