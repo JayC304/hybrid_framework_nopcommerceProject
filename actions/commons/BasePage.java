@@ -139,7 +139,7 @@ public class BasePage {
 		select.selectByVisibleText(textItem);
 	}
 
-	protected String getselectedItemDefaultDrodown(WebDriver driver, String xpathLocator) {
+	protected String getSelectedItemDefaultDrodown(WebDriver driver, String xpathLocator) {
 		Select select = new Select(getWebElement(driver, xpathLocator));
 		return select.getFirstSelectedOption().getText();
 	}

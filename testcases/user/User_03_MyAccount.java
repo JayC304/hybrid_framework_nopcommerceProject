@@ -33,11 +33,11 @@ public class User_03_MyAccount extends BaseTest {
 		firstName = "Anh";
 		lastName = "Tran";
 		password = "123456";
-		// emailAddress = "anhtran" + generateFakeNumber() + "@gmail.vn";
-		emailAddress = "anhtran123@gmail.com";
+		emailAddress = "anhtran" + generateFakeNumber() + "@gmail.vn";
+		// emailAddress = "anhtran123@gmail.com";
 	}
 
-	@Test
+	@Test(priority = 0)
 	public void User_01_Register() {
 		registerPage = homePage.clickToRegisterLink();
 		registerPage.selectGender(gender);
@@ -50,9 +50,10 @@ public class User_03_MyAccount extends BaseTest {
 		registerPage.inputToConfirmPasswordTextbox(password);
 		registerPage.clickToRegisterButton();
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
+		// registerPage.clickToLogoutLink();
 	}
 
-	@Test
+	@Test(priority = 0)
 	public void User_02_LoginSuccess() {
 		loginPage = homePage.clickToLoginLink();
 		loginPage.inputToEmailTextBox(emailAddress);
@@ -61,21 +62,28 @@ public class User_03_MyAccount extends BaseTest {
 		Assert.assertEquals(homePage.isMyAccountLinkDisplayed(), true);
 	}
 
-	@Test
-	public void My_Account_03_Update_Customer_Inforation() {
+	@Test(priority = 1)
+	public void My_Account_01_Update_Customer_Inforation() {
+		String newGender = "Female";
+		String newFirstName = "Auto";
+		String newLastName = "mation";
+		String newDateOfBirth = "1/1/2000";
+		String newEmail = "anhtran6789@gmail.com";
 		myAccountPage = homePage.clickToMyAccountLink();
 		Assert.assertTrue(myAccountPage.isMyAccountPageDisplayed());
-		myAccountPage.updateGender("Female");
-		myAccountPage.updateFirstName("Auto");
-		myAccountPage.updateLastName("mation");
-		myAccountPage.updateDateOfBirth("1/1/2000");
-		myAccountPage.updateEmail("anhtran789@gmail.com");
-		// myAccountPage.clickTosaveCustomerInfo();//button[@id='save-info-button']
+		myAccountPage.updateGender(newGender);
+		myAccountPage.updateFirstName(newFirstName);
+		myAccountPage.updateLastName(newLastName);
+		myAccountPage.updateDateOfBirth(newDateOfBirth);
+		myAccountPage.updateEmail(newEmail);
+		myAccountPage.clickTosaveCustomerInfo();
+		myAccountPage.checkCustomerInfoUpdate(newGender, newFirstName, newLastName, newDateOfBirth, newEmail);
+		Assert.assertEquals(myAccountPage.getUpdatedSuccessMessage(),
+				"The customer info has been updated successfully.");
 	}
 
-//
 //	@Test
-//	public void Login_04_Switch_Page() {
+//	public void My_Account_02_Update_Customer_Inforation() {
 //		loginPage = homePage.clickToLoginLink();
 //		loginPage.inputToEmailTextBox("anhtran@gmail.com");
 //		loginPage.inputToPasswordTextBox(password);

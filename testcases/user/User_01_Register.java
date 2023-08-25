@@ -34,7 +34,6 @@ public class User_01_Register extends BaseTest {
 	public void Register_01_Empty_Data() {
 		homePage.clickToRegisterLink();
 		registerPage.clickToRegisterButton();
-
 		Assert.assertEquals(registerPage.getErrorMessageAtFirstNameTextbox(), "First name is required.");
 		Assert.assertEquals(registerPage.getErrorMessageAtLastNameTextbox(), "Last name is required.");
 		Assert.assertEquals(registerPage.getErrorMessageAtEmailTextbox(), "Email is required.");
