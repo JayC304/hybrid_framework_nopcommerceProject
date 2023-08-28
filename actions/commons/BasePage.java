@@ -15,6 +15,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageObjects.admin.AdminLoginPageObject;
+import pageObjects.user.UserHomePageObject;
+import userPageUIs.BasePageUI;
+
 public class BasePage {
 	private long longTimeout = 30;
 
@@ -22,7 +26,7 @@ public class BasePage {
 		return new BasePage();
 	}
 
-	protected void openPageUrl(WebDriver driver, String pageUrl) {
+	public void openPageUrl(WebDriver driver, String pageUrl) {
 		driver.get(pageUrl);
 	}
 
@@ -328,6 +332,13 @@ public class BasePage {
 		explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(xpathLocator)));
 	}
 
+	protected WebElement getShadowDOM(WebDriver driver, String xpathLocator) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		WebElement element = (WebElement) jsExecutor.executeScript("return arguments[0].shadowRoot;",
+				getWebElement(driver, xpathLocator));
+		return element;
+	}
+
 	protected String convertMonth(String month) {
 		switch (month) {
 		case "1":
@@ -370,5 +381,17 @@ public class BasePage {
 			throw new RuntimeException("Month invalid.");
 		}
 		return month;
+	}
+
+	public UserHomePageObject clickToLogoutLinkAtUserPage(WebDriver driver) {
+		waitForElementClickable(driver, BasePageUI.LOG_OUT_LINK_AT_USER);
+		clickToElement(driver, BasePageUI.LOG_OUT_LINK_AT_USER);
+		return PageGeneratorManager.getUserHomePage(driver);
+	}
+
+	public AdminLoginPageObject clickToLogoutLinkAtAdminPage(WebDriver driver) {
+		waitForElementClickable(driver, BasePageUI.LOG_OUT_LINK_AT_ADMIN);
+		clickToElement(driver, BasePageUI.LOG_OUT_LINK_AT_ADMIN);
+		return PageGeneratorManager.getAdminLoginPage(driver);
 	}
 }

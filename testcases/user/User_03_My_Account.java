@@ -8,25 +8,25 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.MyAccountPageObject;
-import pageObjects.PageGeneratorManager;
-import pageObjects.RegisterPageObject;
+import commons.PageGeneratorManager;
+import pageObjects.user.UserHomePageObject;
+import pageObjects.user.UserLoginPageObject;
+import pageObjects.user.UserMyAccountPageObject;
+import pageObjects.user.UserRegisterPageObject;
 
-public class User_03_MyAccount extends BaseTest {
+public class User_03_My_Account extends BaseTest {
 	private WebDriver driver;
 	private String emailAddress, firstName, lastName, password, gender, birthDay;
-	HomePageObject homePage;
-	RegisterPageObject registerPage;
-	LoginPageObject loginPage;
-	MyAccountPageObject myAccountPage;
+	UserHomePageObject homePage;
+	UserRegisterPageObject registerPage;
+	UserLoginPageObject loginPage;
+	UserMyAccountPageObject myAccountPage;
 
 	@Parameters("browser")
 	@BeforeClass
 	public void beforeClass(String browserName) {
 		driver = getBrowserDriver(browserName);
-		homePage = PageGeneratorManager.getHomePage(driver);
+		homePage = PageGeneratorManager.getUserHomePage(driver);
 
 		gender = "Male";
 		birthDay = "30/4/1998";
