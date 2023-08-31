@@ -4,7 +4,7 @@
   <test name="Run on firefox">
   <parameter name="browser" value="firefox"/> 
     <classes>
-      <class name="user.User_03_Switch_Role"/>
+      <class name="user.User_01_Register"/>
     </classes>
   </test> 
   
